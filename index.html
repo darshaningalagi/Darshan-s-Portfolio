@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Darshan Ingalagi Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #eaaf47;
+            --dark: #232328;
+            --glass: rgba(36,36,44,0.43);
+            --text-main: #e3e3eb;
+            --accent: #e97441;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(122deg, #29292F 60%, #181824 120%);
+            margin: 0;
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(110deg, #252528 80%, #29292F 100%);
+            color: var(--primary);
+            padding: 0 0 15px 0;
+            border-bottom: 2px solid var(--primary);
+            /* Animated Border Bottom */
+            box-shadow: 0 8px 32px #18182490;
+        }
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 7% 28px 7%;
+            gap: 30px;
+        }
+        .hero-content h1 {
+            font-size: 2.7em;
+            margin-bottom: 14px;
+            background: linear-gradient(94deg,var(--primary),#ffe7af 46%, #eaaf47 80%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-content p {
+            font-size: 1.19em;
+            margin-bottom: 1.5em;
+            letter-spacing: 0.7px;
+        }
+        .cta-btn {
+            padding: 13px 38px;
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 28px;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 4px 30px #1515153c;
+            text-decoration: none;
+            transition: all 0.18s;
+            outline: none;
+        }
+        .cta-btn:focus,
+        .cta-btn:hover {
+            background: transparent;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+        }
+        .avatar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 55% 45% 45% 55%/55% 45% 55% 45%;
+            box-shadow: 0 0 46px #eaaf4770, 0 6px 30px #15151588;
+            border: 3.5px solid var(--primary);
+            background: var(--dark);
+            object-fit: cover;
+        }
+        nav {
+            padding: 9px 0 0 0;
+            background: #1d1d23e8;
+            border-bottom: 1px solid var(--primary);
+            text-align: center;
+        }
+        nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 1.12em;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 14px;
+        }
+        nav ul li a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 12px;
+            transition: background 0.14s, color 0.14s;
+        }
+        nav ul li a:focus,
+        nav ul li a:hover {
+            background: #29292F;
+            color: #fff6df;
+        }
+        main {
+            max-width: 1100px;
+            margin: 37px auto 40px auto;
+            padding: 24px 18px 36px 18px;
+            background: var(--glass);
+            border-radius: 16px;
+            box-shadow: 0 0 20px #22262e74,0 1px 13px #18182470;
+            backdrop-filter: blur(4px);
+        }
+        section {
+            margin-bottom: 48px;
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.7s cubic-bezier(.26,.79,.56,.99);
+            will-change: opacity, transform;
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            letter-spacing: 1.1px;
+            font-size: 1.39em;
+            text-shadow: 0 2px 7px #ecaf4740;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 11px;
+            background: linear-gradient(110deg,#232328 60%,#2d2a228e 95%);
+            padding: 16px;
+            border-radius: 11px;
+            box-shadow: 0 0 14px #211d1a39;
+        }
+        .skills-grid div {
+            background: rgba(47,47,54,.88);
+            border-radius: 8px;
+            text-align: center;
+            padding: 12px 0;
+            border: 1.5px solid #34343d;
+            margin-bottom: 4px;
+            font-weight: 600;
+            font-size: 1.06em;
+            box-shadow: 0 0 7px #eaaf4740;
+            transition: background 0.22s;
+        }
+        .skills-grid div:hover, .skills-grid div:focus {
+            background: #252528;
+        }
+
+        /* Timeline upgrades */
+        .vertical-timeline {
+            position: relative;
+            margin: 40px auto 22px auto;
+            max-width: 670px;
+            padding-left: 34px;
+            border-left: 5px solid var(--primary);
+        }
+        .vtimeline-block {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 41px;
+            position: relative;
+            min-height: 80px;
+            animation: fadeInUp 1.2s;
+        }
+        @keyframes fadeInUp { 
+            0% {opacity:0; transform:translateY(30px);}
+            100%{opacity:1;transform:translateY(0);}
+        }
+        .vtimeline-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: #181824b1;
+            color: #fff9;
+            border-radius: 50%;
+            border: 3.5px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.1em;
+            margin-right: 18px;
+            margin-left: -43px;
+            box-shadow: 0 2px 9px #eaaf4740;
+        }
+        .vtimeline-icon.edu {
+            background: #fbeea2ed;
+            color: #eaaf47;
+        }
+        .vtimeline-icon.work {
+            background: #e9744163;
+            color: #fff8;
+        }
+        .vtimeline-icon.award {
+            background: var(--primary);
+            color: #232328;
+        }
+        .vtimeline-content {
+            background: rgba(37, 37, 40, 0.94);
+            border-radius: 14px;
+            padding: 19px 23px 12px 21px;
+            min-width: 230px;
+            border-left: 5px solid #e97441;
+            box-shadow: 0 0 31px #fecf5529;
+            transition: box-shadow 0.2s;
+        }
+        .vtimeline-content:hover {
+            box-shadow: 0 7px 28px #eaaf4740;
+        }
+        .vtimeline-date {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.14em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .vtimeline-content h3 {
+            font-size: 1.14em;
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-weight: 700;
+        }
+        .vtimeline-content p {
+            color: #e3e3eb;
+            margin: 0;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+        }
+        .project-card {
+            background: linear-gradient(104deg,#232328b0 60%,#322f2667 100%);
+            border: 1.7px solid var(--primary);
+            border-radius: 12px;
+            padding: 21px 15px 19px 16px;
+            transition: transform 0.19s, box-shadow 0.18s;
+            box-shadow: 0 0 13px #ecaf474d;
+            color: #f3f1e9;
+            backdrop-filter: blur(4.3px);
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card:hover,.project-card:focus {
+            transform: translateY(-8px) scale(1.033);
+            box-shadow: 0 10px 28px #eaaf475b;
+            border-color: #ffe7af;
+        }
+
+        /* Certificate grid: glass + shadow */
+        .certificates-list {
+            display: flex;
+            gap: 29px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .certificate-badge {
+            background: rgba(40,41,47,0.91);
+            border-left: 5px solid var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 0 9px #eaaf4747,0 5px 13px #23232832;
+            padding: 14px;
+            min-width: 178px;
+            text-align: center;
+        }
+        .certificate-badge img {
+            max-width: 68px;
+            height: 70px;
+            display: block;
+            margin: 0 auto 7px auto;
+            border-radius: 8px;
+            box-shadow: 0 0 8px #eaaf4727;
+            cursor: pointer;
+            object-fit: cover;
+            transition: box-shadow 0.16s;
+        }
+        .certificate-badge img:focus, .certificate-badge img:hover {
+            box-shadow: 0 0 25px #ffe7afad, 0 0 6px #eaaf474d;
+        }
+        .badge {
+            display: inline-block;
+            padding: 7px 17px;
+            font-size: 1em;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 30px;
+            font-weight: bold;
+            letter-spacing: 0.7px;
+            margin-bottom: 7px;
+        }
+        /* Contact Section stylings */
+        #contact .contact-box {
+            background: #232328fa;
+            border-radius: 12px;
+            box-shadow: 0 0 7px #eaaf4744;
+            padding: 22px;
+            max-width: 450px;
+            font-size: 1.05em;
+            margin: 0 auto;
+            color: #e3e3eb;
+        }
+        #contact strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        #contact a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        #contact a:hover {
+            color: #fff12a;
+        }
+        /* Modal for certificates, single instance */
+        #certificateModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.898);
+            align-items: center; justify-content: center;
+            animation: modalFadeIn 0.22s;
+        }
+        @keyframes modalFadeIn { from{opacity: 0;} to{opacity: 1;} }
+        #certificateModal img {
+            max-width: 87vw; max-height: 87vh;
+            border-radius: 14px;
+            box-shadow: 0 0 42px #232328b9;
+            background: #fff;
+        }
+        #closeModal {
+            position: absolute;
+            top: 3vh;
+            right: 4vw;
+            font-size: 2.6em;
+            color: #ffecb3;
+            cursor: pointer;
+            z-index:11;
+            text-shadow: 0 2px 8px #181800ee;
+        }
+        #certificateModal .modal-caption {
+            color: #ffeebe; text-align: center;
+            margin-top: 16px;
+            font-weight: bold;
+            font-size: 1.04em;
+        }
+        /* "Back to Top" Button */
+        #toTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 46px; right: 30px;
+            z-index: 1500;
+            background: var(--primary);
+            color: #252528;
+            border: none;
+            border-radius: 50%;
+            width: 52px; height: 52px;
+            font-size: 2.1em;
+            box-shadow: 0 5px 22px #eaaf4759;
+            cursor: pointer;
+            transition: opacity 0.21s;
+            opacity: 0.87;
+        }
+        #toTopBtn:focus,
+        #toTopBtn:hover {
+            background: #181824;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            outline: none;
+            opacity: 1.00;
+        }
+        footer {
+            background: #1d1d23f3;
+            color: var(--primary);
+            text-align: center;
+            padding: 23px 0 13px 0;
+            border-top: 2px solid var(--primary);
+            font-size: 1.08em;
+            margin-top: 6px;
+        }
+        footer a { color: var(--primary); text-decoration: underline;}
+        footer a:hover { color: #ffeebe;}
+        .social-links .fab {
+            margin: 0 10px 0 6px;
+            color: #ffeebe;
+            font-size: 1.19em;
+            transition: color 0.18s;
+        }
+        .social-links .fab:hover {
+            color: var(--primary);
+        }
+        /* Responsive media queries */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; gap: 13px;}
+            .avatar img { margin: 20px 0 0 0; }
+            main { margin: 1em; }
+            .certificates-list { flex-direction: column; gap: 18px; }
+            nav ul li { display: block; margin: 8px 0; }
+        }
+        @media (max-width: 600px) {
+            .hero-content h1 { font-size: 1.7em;}
+            .skills-grid{ grid-template-columns: 1fr;}
+            .vertical-timeline { max-width: 97vw; border-left-width: 2px;}
+            .vtimeline-icon { width:31px; height:31px; font-size:1.1em; margin-left:-16px;}
+            .vtimeline-content { padding: 11px 7px 6px 11px; min-width: 140px; }
+            .projects-grid { grid-template-columns: 1fr;}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Darshan Ingalagi</h1>
+                <p>BCA Student &nbsp;|&nbsp; Full Stack Developer &nbsp;|&nbsp; AI Enthusiast</p>
+                
+                <div class="social-links" style="margin-top:9px;">
+                    <a href="https://github.com/darshaningalagi" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="http://www.linkedin.com/in/darshan-ingalagi" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="avatar">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQFCtx0sK2APOw/profile-displayphoto-scale_200_200/B56Zl_fU2qG4AY-/0/1758780546265?e=1762992000&v=beta&t=LcgM6xHfeDEhWob-9_7nv7BCY6Ufvy3NyGEnjwvndiI" alt="Darshan Ingalagi Avatar">
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                Final-year BCA student specializing in full-stack development and modern JS/Python ecosystems. Passionate about building high-quality web solutions, effective UIs, and exploring AI/ML, cloud, and blockchain technologies.
+            </p>
+        </section>
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div>Python</div> <div>JavaScript (ES6+)</div> <div>PHP</div>
+                <div>HTML5</div> <div>CSS3/SCSS</div> <div>MERN/MEAN Stack</div>
+                <div>MySQL / MongoDB / Firebase</div> <div>REST APIs</div>
+                <div>Git / GitHub</div> <div>VS Code</div>
+                <div>UI/UX Design</div> <div>Cloud/AI/Blockchain</div><div>PowerBI</div>
+            </div>
+        </section>
+        <section id="timeline" class="section-fade">
+            <h2>My Career Timeline</h2>
+            <div class="vertical-timeline">
+                <div class="vtimeline-block">
+                    <div class="vtimeline-icon edu"><span>🎓</span></div>
+                    <div class="vtimeline-content">
+                        <span class="vtimeline-date">2023–2026</span>
+                        <h3>BCA, PeopleTree Education Society, Belagavi</h3>
+                        <p>CGPA: 7.93 | SGPA: 8.36<br>
+                        Coursework: Web Tech, Data Structures, DBMS, Networks</p>
+                    </div>
+                </div>
+                <div class="vtimeline-block">
+                    <div class="vtimeline-icon edu"><span>🎓</span></div>
+                    <div class="vtimeline-content">
+                        <span class="vtimeline-date">2021–2023</span>
+                        <h3>PU (Science), Chaitanya PU College, Sirsi</h3>
+                        <p>Score: 75.3%</p>
+                    </div>
+                </div>
+                <div class="vtimeline-block">
+                    <div class="vtimeline-icon edu"><span>🎓</span></div>
+                    <div class="vtimeline-content">
+                        <span class="vtimeline-date">2021</span>
+                        <h3>Kendriya Vidyalaya, Haveri</h3>
+                        <p>Class X: 77.8%</p>
+                    </div>
+                </div>
+                <div class="vtimeline-block">
+                    <div class="vtimeline-icon work"><span>💼</span></div>
+                    <div class="vtimeline-content">
+                        <span class="vtimeline-date">Jul–Oct 2025</span>
+                        <h3>Full Stack Developer Intern, Unified Mentors</h3>
+                        <p>Developed MERN/MEAN apps, RESTful APIs, responsive UI. Collaborated on live project releases and Agile workflows.</p>
+                    </div>
+                </div>
+                <div class="vtimeline-block">
+                    <div class="vtimeline-icon award"><span>🏆</span></div>
+                    <div class="vtimeline-content">
+                        <span class="vtimeline-date">2025</span>
+                        <h3>PowerBI Workshop (OfficeMaster)</h3>
+                        <p>AI-powered dashboards, certified October 2025.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Cloud Clinic Management System</h3>
+                    <p>Multi-hospital platform with appointment, EMR, geolocation, and video consultation using Firebase, PHP, MySQL, and JS.</p>
+                </div>
+                <div class="project-card">
+                    <h3>E-Commerce Platform</h3>
+                    <p>Amazon-style shopping site; features: authentication, cart, checkout, admin, built with PHP, MySQL, HTML, CSS, and JS.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Portfolio & Website Dev</h3>
+                    <p>Interactive personal/professional sites using HTML, CSS, JS. Features: blogs, responsive layouts, stylish UIs.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Library Management System</h3>
+                    <p>Library book system with user login and admin features built with PHP/MySQL and modern JS features.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Algorithms & Mini Projects</h3>
+                    <p>TSP and Knapsack implementations; JS apps like background changers, removers, smart To-Do.</p>
+                </div>
+            </div>
+        </section>
+        <section id="certificates">
+            <h2>Achievements & Certifications</h2>
+            <div class="certificates-list">
+                <div class="certificate-badge">
+                    <img src="WhatsApp Image 2025-10-26 at 13.35.50_27da5500.jpg" alt="PowerBI Workshop Certificate" tabindex="0" data-caption="PowerBI Workshop (OfficeMaster)">
+                    <div>PowerBI Workshop (OfficeMaster)</div>
+                </div>
+                <div class="certificate-badge">
+                    <img src="Screenshot 2025-10-20 233547.png" alt="Web Dev Intern Certificate" tabindex="0" data-caption="Fullstack Web Dev Internship At Unified Mentor">
+                    <div>Fullstack Web Dev Internship At Unified Mentor Pvt Ltd</div>
+                </div>
+                <div class="certificate-badge">
+                    <img src="Screenshot 2025-10-28 224916.png" alt="Recommendation Letter" tabindex="0" data-caption="Recommended By Unified Mentor Pvt Ltd">
+                    <div>Recommended By Unified Mentor Pvt Ltd</div>
+                </div>
+                <div class="certificate-badge">
+                    <img src="https://media.licdn.com/dms/image/v2/D5622AQHIp7M9A-T0rA/feedshare-shrink_800/B56ZoC8F04KoAg-/0/1760985899618?e=1762992000&v=beta&t=Yr7dF48-vaJ4IyXFgBQMae05g-x-HjEHjfmyMTyUZGY" alt="Data Science Certificate" tabindex="0" data-caption="Data Science using AI">
+                    <div>Data Science using AI</div>
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <div class="contact-box">
+                <p>
+                    <strong>GitHub:</strong>
+                    <a href="https://github.com/darshaningalagi" target="_blank">github.com/darshaningalagi</a>
+                </p>
+                <p>
+                    <strong>LinkedIn:</strong>
+                    <a href="http://www.linkedin.com/in/darshan-ingalagi" target="_blank">linkedin.com/in/darshan-ingalagi</a>
+                </p>
+                <p>
+                    <strong>Email:</strong>
+                    <a href="mailto:darshaningalagi46@gmail.com">darshaningalagi46@gmail.com</a>
+                </p>
+                <p>
+                    <strong>Address:</strong>
+                    Desai galli 1st cross, Haveri 581110
+                </p>
+                <p>
+                    <strong>Phone:</strong>
+                    +91-6362329134
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>
+            &copy; 2025 Darshan Ingalagi | 
+            <a href="https://github.com/darshaningalagi" target="_blank">GitHub</a>
+        </p>
+        <div class="social-links">
+            <a href="https://github.com/darshaningalagi" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="http://www.linkedin.com/in/darshan-ingalagi" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:darshaningalagi46@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+        </div>
+    </footer>
+    <button id="toTopBtn" aria-label="Back to Top"><i class="fas fa-chevron-up"></i></button>
+    <!-- Certificates Modal (single instance for all images) -->
+    <div id="certificateModal">
+        <span id="closeModal">&times;</span>
+        <img id="modalImg" src="" alt="Certificate">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Reveal sections on scroll
+        function revealOnScroll() {
+            document.querySelectorAll('main section').forEach(function(sec) {
+                var top = sec.getBoundingClientRect().top;
+                if(top < window.innerHeight - 120) {
+                    sec.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Certificates modal logic (single instance)
+        const certModal = document.getElementById('certificateModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalCaption = document.getElementById('modalCaption');
+        document.querySelectorAll('.certificate-badge img').forEach(function(img){
+            img.onclick = function() {
+                certModal.style.display = 'flex';
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+                modalCaption.textContent = this.dataset.caption || this.alt;
+                // Accessibility focus trap
+                modalImg.focus();
+            };
+            img.onkeydown = function(event) {
+                if(event.key === "Enter" || event.key === " ") {
+                    this.onclick(); event.preventDefault();
+                }
+            };
+        });
+        document.getElementById('closeModal').onclick = function() {
+            certModal.style.display = 'none';
+        };
+        certModal.onclick = function(e) {
+            if (e.target === this) certModal.style.display = 'none';
+        };
+        window.addEventListener('keydown', function(e){
+            if(certModal.style.display==='flex' && e.key==='Escape') certModal.style.display='none';
+        });
+
+        // Back to Top Button
+        const toTopBtn = document.getElementById('toTopBtn');
+        window.addEventListener('scroll', function() {
+            if(window.scrollY > 340) {
+                toTopBtn.style.display = 'block'; toTopBtn.style.opacity = '0.92';
+            } else {
+                toTopBtn.style.display = 'none';
+            }
+        });
+        toTopBtn.onclick = function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+    </script>
+</body>
+</html>
